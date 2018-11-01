@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Advert
 {
+    public function __construct()
+    {
+        //par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->date new \DateTime();
+    }
+
     /**
      * @var int
      *
