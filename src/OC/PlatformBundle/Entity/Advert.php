@@ -3,6 +3,7 @@
 namespace OC\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use OC\PlatformBundle\Entity\Image;
 
 /**
  * Advert
@@ -61,7 +62,12 @@ class Advert
      * @ORM\Column(name="content", type="text")
      */
     private $content;
-
+    
+    /**
+     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
 
     /**
      * Get id
@@ -191,5 +197,29 @@ class Advert
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * Set image
+     *
+     * @param Image $image
+     *
+     * @return Advert
+     */
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
