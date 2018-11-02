@@ -7,15 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Advert
  *
- * @ORM\Table(name="advert")
+ * @ORM\Table(name="oc_advert")
  * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertRepository")
  */
 class Advert
 {
+    /**
+     * Advert constructor.
+     */
     public function __construct()
     {
         //par défaut, la date de l'annonce est la date d'aujourd'hui
-        $this->date new \DateTime();
+        $this->date = new \DateTime();
     }
 
     /**
@@ -26,6 +29,10 @@ class Advert
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = true;
 
     /**
      * @var \DateTime
@@ -161,5 +168,28 @@ class Advert
     {
         return $this->content;
     }
-}
 
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Advert
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+}
